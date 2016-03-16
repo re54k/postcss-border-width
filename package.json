@@ -1,0 +1,26 @@
+{
+  "name": "postcss-border-width",
+  "version": "0.0.1",
+  "description": "Help to render true 1px border.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/re54k/postcss-border-width.git"
+  },
+  "keywords": [
+    "css",
+    "border",
+    "1px",
+    "postcss-plugin",
+    "postcss"
+  ],
+  "author": "re54k",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/re54k/postcss-border-width/issues"
+  },
+  "homepage": "https://github.com/re54k/postcss-border-width#readme"
+}
