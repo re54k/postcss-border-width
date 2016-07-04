@@ -1,6 +1,6 @@
 {
   "name": "postcss-border-width",
-  "version": "0.0.1",
+  "version": "0.0.3",
   "description": "Help to render true 1px border.",
   "main": "index.js",
   "scripts": {

@@ -8,7 +8,7 @@ var postcss = require("postcss");
 module.exports = postcss.plugin('postcss-border-width', function (opts) {
 	opts = opts || {};
 	var options = {
-			parentSelectors: opts.parentSelectors || ['.iosx2', '.iosx3'],
+			parentSelectors: opts.parentSelectors || [':global(.iosx2)', ':global(.iosx3)'],
 			maxPixelValue: opts.maxPixelValue || 2
 		},
 		pxReg = /(\d+)px/,
@@ -39,8 +39,20 @@ module.exports = postcss.plugin('postcss-border-width', function (opts) {
 			var selectors = borders[i];
 			if ( selectors ) {
 				var ps = options.parentSelectors;
-				rules.push(ps[0] + ' ' + selectors.join(',\r\n' + ps[0] + ' ') + '{border-width:' + i/2 + 'px}');
-				rules.push(ps[1] + ' ' + selectors.join(',\r\n' + ps[1] + ' ') + '{border-width:' + round(i/2.8, 10) + 'px}');
+				var flatenSelector = [];
+				var matches;
+
+				selectors.forEach(function(s) {
+					matches = (s + ',').match(/\.[^,]+(?=,)/g);
+					if ( matches && matches.length > 1 ) {
+						flatenSelector = flatenSelector.concat(matches);
+					} else {
+						flatenSelector.push(s);
+					}
+				});
+
+				rules.push(ps[0] + ' ' + flatenSelector.join(',\r\n' + ps[0] + ' ') + '{border-width:' + i/2 + 'px}');
+				rules.push(ps[1] + ' ' + flatenSelector.join(',\r\n' + ps[1] + ' ') + '{border-width:' + round(i/2.8, 10) + 'px}');
 			}
 		}
 
